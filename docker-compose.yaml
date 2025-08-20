@@ -1,0 +1,18 @@
+services:
+  airflow-webserver:
+    image: apache/airflow:2.4.0
+    container_name: airflow_webserver
+    volumes:
+      - ./dags:/opt/airflow/dags
+    ports:
+      - "8080:8080"
+    command: webserver
+    restart: always
+
+  airflow-scheduler:
+    image: apache/airflow:2.4.0
+    container_name: airflow_scheduler
+    volumes:
+      - ./dags:/opt/airflow/dags
+    command: scheduler
+    restart: always
