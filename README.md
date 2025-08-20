@@ -49,7 +49,7 @@ Place the entire Python script for the Airflow DAG inside the `dags/` folder.
 #### `.env`  
 Create this file in the project’s root directory and add  your API credentials:  
 
-#### requirements.txt
+#### `requirements.txt`
 Create this file in the project’s root directory and add the required Python packages:
 
 ```
@@ -60,7 +60,7 @@ google-api-python-client
 apache-airflow
 ```
 
-#### docker-compose.yaml
+#### `docker-compose.yaml`
 Create this file in the project’s root directory and copy the content below.
 This configuration uses a SQLite backend for simplicity in a local development environment.
 
@@ -102,60 +102,27 @@ services:
 
 Follow these steps to start and run your Airflow pipeline using **Docker Compose**:  
 
-1. **Open a terminal** and navigate to the root directory of your project (where the `docker-compose.yaml` file is located).  
+1.  **Open your terminal** and navigate to the root of your project directory.
+2.  **Start the Airflow services** with Docker Compose:
 
-2. **Start the Airflow services** by running:
+    ```bash
+    docker-compose up -d
+    ```
 
-   docker-compose up -d
+    This command will download the necessary images and start the containers. The dependencies from `requirements.txt` will be automatically installed.
 
-   This command will:
+3.  **Access the Airflow UI** at `http://localhost:8080`.
+4.  **Log in** with the default credentials: `airflow` / `airflow`.
+5.  **Enable the DAG**: In the UI, locate **SocialMedia_ETL** and toggle it **on**.
+6.  **Trigger a run**: Click the "play" button to execute the pipeline manually.
 
-Download the necessary Docker images
-
-Create containers for the webserver and scheduler
-
-Start them in the background
-
-Automatically install the dependencies listed in requirements.txt inside the containers
-
-   
-3. Access the Airflow UI
-Open your browser and go to: http://localhost:8080
-
-Log in with the default credentials
-
-Username: airflow
-
-Password: airflow
-
-4. Enable the DAG
-
-In the Airflow UI, locate the SocialMedia_ETL DAG in the list
-
-Toggle the switch to turn it on
-
-6. Trigger the DAG
-
-Click on the DAG name
-
-Use the ▶️ play button in the top right to trigger a new run
 
 ---
 
-## 📊 Output
+## 📄 Pipeline Output
 
-After successful execution, the pipeline will generate two CSV files in the project’s root directory:
+Upon completion, the pipeline will generate two CSV files in your project's root directory:
 
-SocialMedia_Analysis.csv
+-   `SocialMedia_Analysis.csv`: The combined and transformed raw data.
+-   `Analytics_Report.csv`: The final analytical report containing key insights.
 
-Contains the combined and transformed data from Twitter and YouTube
-
-Analytics_Report.csv
-
-Contains summary reports, including:
-
-📅 Daily engagement
-
-⭐ Top 5 overall posts
-
-🔝 Top 3 posts per platform
