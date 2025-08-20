@@ -30,14 +30,14 @@ Before running the pipeline, ensure you have the following installed on your mac
 
 ### 📂 Step 3.1: Project Structure  
 
-
+```
 your_project/
 ├── dags/                           Contains Airflow DAG Python script.
 │ └── social_media_etl.py           
 ├── .env                            Stores API credentials.
 ├── requirements.txt                Lists all necessary Python libraries.
 └── docker-compose.yaml             Defines Docker services for Airflow.
-  
+```
 
 ---
 
@@ -49,19 +49,22 @@ Place the entire Python script for the Airflow DAG inside the `dags/` folder.
 #### `.env`  
 Create this file in the project’s root directory and add  your API credentials:  
 
-### requirements.txt
+#### requirements.txt
 Create this file in the project’s root directory and add the required Python packages:
 
+```
 pandas
 tweepy
 python-dotenv
 google-api-python-client
 apache-airflow
+```
 
-### docker-compose.yaml
+#### docker-compose.yaml
 Create this file in the project’s root directory and copy the content below.
 This configuration uses a SQLite backend for simplicity in a local development environment.
 
+```
 version: '3.8'
 services:
   airflow-webserver:
@@ -93,7 +96,8 @@ services:
       - AIRFLOW_PIP_INSTALL_REQUIREMENTS=1
     command: scheduler
     restart: always
-
+```
+---
 ## ▶️ Running the Pipeline  
 
 Follow these steps to start and run your Airflow pipeline using **Docker Compose**:  
@@ -136,9 +140,9 @@ Click on the DAG name
 
 Use the ▶️ play button in the top right to trigger a new run
 
+---
 
-
-📊 Output
+## 📊 Output
 
 After successful execution, the pipeline will generate two CSV files in the project’s root directory:
 
